@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bigniu.dao.HistoryDao">
+  <insert id="addHistory" parameterType="History">
+   insert into 
+   		api_history
+   	(
+		path,
+		token,
+		time,
+		ip
+    )
+    values (
+	    #{path}, 
+	    #{token}, 
+	    DATE_FORMAT(NOW(),'%Y-%m-%d %H:%i:%s'),
+	    #{ip}
+    )
+  </insert>
+  
+</mapper>

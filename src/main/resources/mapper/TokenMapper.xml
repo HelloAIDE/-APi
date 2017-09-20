@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bigniu.dao.TokenDao">
+  <insert id="addToken" parameterType="Token">
+   insert into 
+   		api_token
+   	(
+		value,
+		create_time,
+		modify_time,
+		end_time,
+		ip,
+		count,
+		last_time,
+		host
+    )
+    values (
+	    #{value}, 
+	    DATE_FORMAT(NOW(),'%Y-%m-%d'),
+	    DATE_FORMAT(NOW(),'%Y-%m-%d'),
+	    #{endTime},
+	    #{ip},
+	    #{count},
+	    #{lastTime},
+	    #{host}
+    )
+  </insert>
+  <select id="getAllToken" resultType="Token">
+  	select 
+  		id,
+  		value,
+  		create_time,
+  		modify_time,
+  		end_time,
+  		ip,
+  		count,
+  		last_time,
+  		host
+  	from
+  		api_token
+  </select>
+  <select id="getTokenById" resultType="Token">
+ 	 select 
+  		id,
+  		value,
+  		create_time,
+  		modify_time,
+  		end_time,
+  		ip,
+  		count,
+  		last_time,
+  		host
+  	from
+  		api_token
+  	where 
+  		id=#{id}
+  </select>
+  <select id="getTokenByValue" resultType="Token">
+  	 select 
+  		id,
+  		value,
+  		create_time,
+  		modify_time,
+  		end_time,
+  		ip,
+  		count,
+  		last_time,
+  		host
+  	from
+  		api_token
+  	where 
+  		value=#{value}
+  </select>
+  <select id="getTokenByCreateTime" resultType="Token">
+  	 select 
+  		id,
+  		value,
+  		create_time,
+  		modify_time,
+  		end_time,
+  		ip,
+  		count,
+  		last_time,
+  		host
+  	from
+  		api_token
+  	where 
+  		create_time=#{createTime}
+  </select>
+  <delete id="deleteToken" parameterType="Token">
+  	delete from 
+  		api_token
+  	where 
+  		id= #{id}
+  </delete>
+  <update id="updateToken" parameterType="Token">
+  	update 	
+  		api_token
+  	set 
+  		id=#{id},
+  		value=#{value},
+  		create_time=#{createTime},
+  		modify_time=#{modifyTime},
+  		ip=#{ip},
+  		count=#{count},
+  		last_time=#{lastTime},
+  		host=#{host}
+  	where 
+  		id = #{id}
+  </update>
+</mapper>
